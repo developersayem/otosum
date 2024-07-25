@@ -2,6 +2,7 @@ import { UserNav } from "./components/user-nav";
 import { Search } from "./components/search";
 import { MainNav } from "./components/main-nav";
 import TeamSwitcher from "./components/team-switcher";
+import DarkModeBtnCom from "./components/DarkModeBtnCom";
 
 interface Props {
   children: React.ReactNode;
@@ -16,7 +17,7 @@ const dashboardLayout = ({ children }: Props) => {
             <TeamSwitcher />
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
-              <Search />
+              <DarkModeBtnCom />
               <UserNav />
             </div>
           </div>
