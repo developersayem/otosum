@@ -50,6 +50,10 @@ interface Shop {
 
 const shops: Shop[] = [
   {
+    label: "all",
+    value: "all",
+  },
+  {
     label: "saver resort",
     value: "saver",
   },
@@ -103,7 +107,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                 alt={selectedShop.label}
                 className="grayscale"
               />
-              <AvatarFallback>SC</AvatarFallback>
+              <AvatarFallback>{selectedShop.label}</AvatarFallback>
             </Avatar>
             <span className="capitalize">{selectedShop.label}</span>
             <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
@@ -130,13 +134,13 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                       alt={shop.label}
                       className="grayscale"
                     />
-                    <AvatarFallback>SC</AvatarFallback>
+                    <AvatarFallback>{shop.label}</AvatarFallback>
                   </Avatar>
                   <span className="capitalize">{shop.label}</span>
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",
-                      selectedShop.value === shop.label
+                      selectedShop.value === shop.value
                         ? "opacity-100"
                         : "opacity-0"
                     )}

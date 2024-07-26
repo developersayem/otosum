@@ -40,7 +40,7 @@ export function MainNav({
             : "text-muted-foreground"
         }`}
       >
-        employee's
+        employees
       </Link>
       <Link
         href="/dashboard/suppliers"
@@ -50,7 +50,7 @@ export function MainNav({
             : "text-muted-foreground"
         }`}
       >
-        supplier's
+        suppliers
       </Link>
       <Link
         href="/dashboard/settings"
