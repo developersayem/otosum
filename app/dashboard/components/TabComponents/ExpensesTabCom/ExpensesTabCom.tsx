@@ -36,7 +36,7 @@ const ExpensesTabCom: NextComponentType<NextPageContext, {}, Props> = async ({
 }: Props) => {
   const data = await getData();
   return (
-    <TabsContent value={value} className="">
+    <TabsContent value={value} className="space-y-4 w-full">
       <Card className="col-span-3">
         <CardHeader>
           <CardTitle>Expenses List</CardTitle>

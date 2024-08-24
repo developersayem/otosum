@@ -19,7 +19,7 @@ const OverviewTabCom: NextComponentType<NextPageContext, {}, Props> = ({
   value,
 }: Props) => {
   return (
-    <TabsContent value={value} className="space-y-4">
+    <TabsContent value={value} className="space-y-4 w-full">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -57,8 +57,7 @@ const OverviewTabCom: NextComponentType<NextPageContext, {}, Props> = ({
               strokeWidth="2"
               className="h-4 w-4 text-muted-foreground"
             >
-              <rect width="20" height="14" x="2" y="5" rx="2" />
-              <path d="M2 10h20" />
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
             </svg>
           </CardHeader>
           <CardContent>
@@ -81,8 +80,7 @@ const OverviewTabCom: NextComponentType<NextPageContext, {}, Props> = ({
               strokeWidth="2"
               className="h-4 w-4 text-muted-foreground"
             >
-              <rect width="20" height="14" x="2" y="5" rx="2" />
-              <path d="M2 10h20" />
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
             </svg>
           </CardHeader>
           <CardContent>
@@ -94,7 +92,9 @@ const OverviewTabCom: NextComponentType<NextPageContext, {}, Props> = ({
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Employee's</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Employee&apos;s
+            </CardTitle>
             <UsersRound />
           </CardHeader>
           <CardContent>

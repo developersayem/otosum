@@ -11,7 +11,10 @@ export function MainNav({
 
   return (
     <nav
-      className={cn("flex items-center space-x-4 lg:space-x-6", className)}
+      className={cn(
+        "md:flex items-center space-x-4 lg:space-x-6 hidden ",
+        className
+      )}
       {...props}
     >
       <Link
@@ -20,7 +23,7 @@ export function MainNav({
           pathName === "/dashboard" ? "text-primary" : "text-muted-foreground"
         }`}
       >
-        overview
+        dashboard
       </Link>
       <Link
         href="/dashboard/products"

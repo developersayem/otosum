@@ -1,17 +1,19 @@
+"use client";
 import { Metadata } from "next";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CalendarDateRangePicker } from "./components/date-range-picker";
 import OverviewTabCom from "./components/TabComponents/OverviewTabCom/OverviewTabCom";
 import SalesTabCom from "./components/TabComponents/SalesTabCom/SalesTabCom";
 import ExpensesTabCom from "./components/TabComponents/ExpensesTabCom/ExpensesTabCom";
+import { DatePicker } from "./components/date-picker";
+import { Fragment } from "react";
 
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Example dashboard app built using the components.",
-};
+// export const metadata: Metadata = {
+//   title: "Dashboard",
+//   description: "Example dashboard app built using the components.",
+// };
 
 export default function DashboardPage() {
+  let showDatePiker: string = "overview";
   return (
     <>
       <div className=" flex-col md:flex ">
@@ -19,14 +21,20 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between space-y-2">
             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
             <div className="flex items-center space-x-2">
-              <CalendarDateRangePicker />
-              <Button>Download</Button>
+              {/* <ShopSwitcher /> */}
+              {showDatePiker === "overview" && <DatePicker />}
             </div>
           </div>
-          <Tabs defaultValue="overview" className="space-y-4">
-            <TabsList>
+          {/* grid sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 */}
+          <Tabs
+            defaultValue="overview"
+            className="space-y-4 flex flex-wrap w-full"
+          >
+            <TabsList className="flex flex-grow justify-start flex-wrap">
               <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="sales">Sales</TabsTrigger>
+              <div onClick={() => (showDatePiker = "sales")}>
+                <TabsTrigger value="sales">Sales</TabsTrigger>
+              </div>
               <TabsTrigger value="expenses">Expenses</TabsTrigger>
               <TabsTrigger value="analytics">Analytics</TabsTrigger>
               <TabsTrigger value="reports">Reports</TabsTrigger>
