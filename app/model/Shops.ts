@@ -29,11 +29,9 @@ const ShopSchema: Schema<Shop> = new Schema({
   img: {
     fileName: {
       type: String,
-      required: [true, "Image file name is required"],
     },
     fileImage: {
       type: String,
-      required: [true, "Image file is required"],
     },
   },
   address: {

@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/card";
 import { TabsContent } from "@/components/ui/tabs";
 import { UsersRound } from "lucide-react";
-import { RecentSales } from "../../recent-sales";
-import { Overview } from "../../overview";
+import { RecentSales } from "./recent-sales";
+import { Overview } from "./overview";
 
 interface Props {
   value: string;

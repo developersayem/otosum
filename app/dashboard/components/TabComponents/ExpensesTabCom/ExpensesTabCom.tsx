@@ -1,6 +1,6 @@
 import type { NextComponentType, NextPageContext } from "next";
 import { ExpensesColumn, ExpensesColumns } from "./expenses-column";
-import { DataTable } from "../../data-table";
+import { DataTable } from "../../shared/data-table";
 import { TabsContent } from "@/components/ui/tabs";
 import {
   Card,

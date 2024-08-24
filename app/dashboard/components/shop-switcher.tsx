@@ -1,6 +1,7 @@
+// components/ShopSwitcher.js (Client Component)
 "use client";
 
-import { useState, useEffect, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import {
   CaretSortIcon,
   CheckIcon,
@@ -35,8 +36,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import UploadImg from "./UploadImg";
 import { useToast } from "@/components/ui/use-toast";
+import UploadImg from "./shared/UploadImg";
 
 interface Image {
   fileImage: string;
@@ -54,28 +55,20 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
 >;
 
-interface ShopSwitcherProps extends PopoverTriggerProps {}
+interface ShopSwitcherProps extends PopoverTriggerProps {
+  shops: Shop[]; // Data passed from Server Component
+}
 
-export default function ShopSwitcher({ className }: ShopSwitcherProps) {
+export default function ShopSwitcher({
+  className,
+  shops: initialShops,
+}: ShopSwitcherProps) {
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const [showNewTeamDialog, setShowNewTeamDialog] = useState(false);
-  const [shops, setShops] = useState<Shop[]>([]);
-  const [selectedShop, setSelectedShop] = useState<Shop>(shops[0]);
-  // Form state
+  const [selectedShop, setSelectedShop] = useState<Shop>();
   const [selectedFile, setSelectedFile] = useState<Image | null>(null);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch("/api/v1/shops", { cache: "force-cache" });
-      const data = await response.json();
-      setShops(data);
-    } catch (error) {
-      console.error("Failed to fetch shops:", error);
-    }
-  };
-
-  fetchData();
+  const [shops, setShops] = useState<Shop[]>(initialShops); // Initialize state with server data
 
   // SUBMIT NEW SHOP DATA TO DATABASE
   const handleAddShop = async (
@@ -99,7 +92,9 @@ export default function ShopSwitcher({ className }: ShopSwitcherProps) {
       });
 
       if (response.ok) {
-        fetchData();
+        const newShop = await response.json(); // Assuming the API returns the newly added shop
+
+        setShops((prevShops) => [...prevShops, newShop]); // Update the shops state
         setShowNewTeamDialog(false);
         setOpen(false);
         setSelectedFile(null); // Reset selected file
@@ -137,7 +132,6 @@ export default function ShopSwitcher({ className }: ShopSwitcherProps) {
                 alt={selectedShop?.img?.fileName || "Avatar"}
                 className=""
               />
-              {/* <AvatarFallback>All</AvatarFallback> */}
             </Avatar>
 
             <span className="capitalize">

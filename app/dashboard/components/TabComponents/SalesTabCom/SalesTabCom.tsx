@@ -9,10 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { DataTable } from "../../data-table";
+import { DataTable } from "../../shared/data-table";
 import ShopSwitcher from "../../shop-switcher";
 import { UsersRound } from "lucide-react";
-import { DatePicker } from "../../date-picker";
+import { DatePicker } from "../../shared/date-picker";
 
 async function getData(): Promise<SalesColumn[]> {
   // Fetch data from your API here.

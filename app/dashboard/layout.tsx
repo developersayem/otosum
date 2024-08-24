@@ -1,8 +1,9 @@
 import { UserNav } from "./components/user-nav";
 import { MainNav } from "./components/main-nav";
 import ShopSwitcher from "./components/shop-switcher";
-import DarkModeBtnCom from "./components/DarkModeBtnCom";
-import { Toaster } from "@/components/ui/toaster"
+import DarkModeBtnCom from "./components/shared/DarkModeBtnCom";
+import { Toaster } from "@/components/ui/toaster";
+import ShopSelector from "./components/shop-selctor";
 
 interface Props {
   children: React.ReactNode;
@@ -18,7 +19,7 @@ const dashboardLayout = ({ children }: Props) => {
           </h1>
           <MainNav className="mx-6" />
           <div className="ml-auto flex items-center space-x-4">
-            <ShopSwitcher />
+            <ShopSelector />
             <DarkModeBtnCom />
             <UserNav />
           </div>

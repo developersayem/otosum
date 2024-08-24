@@ -4,7 +4,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OverviewTabCom from "./components/TabComponents/OverviewTabCom/OverviewTabCom";
 import SalesTabCom from "./components/TabComponents/SalesTabCom/SalesTabCom";
 import ExpensesTabCom from "./components/TabComponents/ExpensesTabCom/ExpensesTabCom";
-import { DatePicker } from "./components/date-picker";
+import { DatePicker } from "./components/shared/date-picker";
 import { Fragment } from "react";
 
 // export const metadata: Metadata = {
