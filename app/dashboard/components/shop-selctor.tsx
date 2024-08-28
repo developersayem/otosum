@@ -1,19 +1,34 @@
-// Server Component
-import { Suspense } from "react";
-import ShopSwitcher from "./shop-switcher";
+// "use client";
+// import { useEffect, useState } from "react";
+// import { Suspense } from "react";
+// import ShopSwitcher from "./shop-switcher";
 
-export default async function ShopSelector() {
-  const shops = await fetchShops();
+// export default async function ShopSelector() {
+//   const [shops, setShops] = useState([]);
 
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ShopSwitcher shops={shops} />
-    </Suspense>
-  );
-}
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await fetch("/api/v1/shops");
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! status: ${response.status}`);
+//         }
+//         const result = await response.json();
+//         setShops(result);
+//       } catch (error) {
+//         console.error(
+//           "There has been a problem with your fetch operation:",
+//           error
+//         );
+//       }
+//     };
 
-async function fetchShops() {
-  const res = await fetch(`${process.env.BASE_URL}/api/v1/shops`);
-  if (!res.ok) throw new Error("Failed to fetch");
-  return res.json();
-}
+//     fetchData();
+//   }, []);
+
+//   return (
+//     <Suspense fallback={<div>Loading...</div>}>
+//       <ShopSwitcher shops={shops} />
+//     </Suspense>
+//   );
+// }

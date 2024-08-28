@@ -1,7 +1,7 @@
 // components/ShopSwitcher.js (Client Component)
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import {
   CaretSortIcon,
   CheckIcon,
@@ -55,20 +55,15 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
 >;
 
-interface ShopSwitcherProps extends PopoverTriggerProps {
-  shops: Shop[]; // Data passed from Server Component
-}
+interface ShopSwitcherProps extends PopoverTriggerProps {}
 
-export default function ShopSwitcher({
-  className,
-  shops: initialShops,
-}: ShopSwitcherProps) {
+export default function ShopSwitcher({ className }: ShopSwitcherProps) {
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const [showNewTeamDialog, setShowNewTeamDialog] = useState(false);
   const [selectedShop, setSelectedShop] = useState<Shop>();
   const [selectedFile, setSelectedFile] = useState<Image | null>(null);
-  const [shops, setShops] = useState<Shop[]>(initialShops); // Initialize state with server data
+  const [shops, setShops] = useState<Shop[]>(); // Initialize state with server data
 
   // SUBMIT NEW SHOP DATA TO DATABASE
   const handleAddShop = async (
@@ -94,7 +89,8 @@ export default function ShopSwitcher({
       if (response.ok) {
         const newShop = await response.json(); // Assuming the API returns the newly added shop
 
-        setShops((prevShops) => [...prevShops, newShop]); // Update the shops state
+        // Update the shops state
+        fetchData();
         setShowNewTeamDialog(false);
         setOpen(false);
         setSelectedFile(null); // Reset selected file
@@ -114,6 +110,22 @@ export default function ShopSwitcher({
       console.error("An error occurred while adding shop:", error);
     }
   };
+  // how to get shops data
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/v1/shops");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setShops(data);
+    } catch (error) {
+      console.error("An error occurred while fetching shops:", error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
@@ -145,7 +157,7 @@ export default function ShopSwitcher({
             <CommandList>
               <CommandInput placeholder="Search shop..." />
               <CommandEmpty>No shop found.</CommandEmpty>
-              {shops.map((shop: Shop) => (
+              {shops?.map((shop: Shop) => (
                 <Button
                   variant="ghost"
                   key={shop.shopId}
